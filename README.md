@@ -1,1 +1,1 @@
-# LongCal
+# StringCal
