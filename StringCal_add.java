@@ -1,6 +1,8 @@
+package test;
+
 import java.util.StringTokenizer;
 
-public class StringCal {
+public class StringCal_add {
 
 	public static void main(String[] args) {
 		String[][] str = new String[4][2];
@@ -70,6 +72,9 @@ public class StringCal {
 				le1F = str[0][1].length();
 				le2F = str[2][1].length();
 				m = "";
+		}else {
+			str[0][1] = "";
+			str[2][1] = "";
 		}
 		//자릿수맞춤
 		int s = 0;
@@ -110,7 +115,7 @@ public class StringCal {
 			}
 		}
 		if(s==1) {
-			str[3][0] = s + str[3][1];
+			str[3][0] = s + str[3][0];
 		}
 		if(str[3][1] == null) {
 			str[3][1] = "";
@@ -125,6 +130,11 @@ public class StringCal {
 			System.out.print("-");
 		}
 		System.out.println();
-		System.out.println("  " + str[3][0]+str[1][1]+str[3][1]);
+		if(s==1) {
+			System.out.print(" ");
+		}else {
+			System.out.print("  ");
+		}
+		System.out.println(str[3][0]+str[1][1]+str[3][1]);
 	}
 }
