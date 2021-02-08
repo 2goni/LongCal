@@ -110,7 +110,7 @@ public class StringCal_sub {
 			for(int j=0; j<le1F; j++) {
 				m = Integer.toString(Character.getNumericValue(maxfnumc[l]) - Character.getNumericValue(minfnumc[l])+s);
 				if(m.length() > 1) {
-					str[3][1] = Integer.toString(Character.getNumericValue(maxfnumc[l]) - Character.getNumericValue(minfnumc[l]) + 10) + str[3][1];
+					str[3][1] = Integer.toString(Integer.parseInt(m) + 10) + str[3][1];
 					l--;
 					s = -1;
 				}else {
@@ -128,7 +128,7 @@ public class StringCal_sub {
 			for(int j=0; j<le1I; j++) {
 				m = Integer.toString(Character.getNumericValue(maxinumc[l]) - Character.getNumericValue(mininumc[l])+s);
 				if(m.length() > 1) {
-					str[3][0] = Integer.toString(Character.getNumericValue(maxinumc[l]) - Character.getNumericValue(mininumc[l]) + 10) + str[3][0];
+					str[3][0] = Integer.toString(Integer.parseInt(m) + 10) + str[3][0];
 					l--;
 					s = -1;
 				}else {
@@ -138,11 +138,16 @@ public class StringCal_sub {
 				}
 			}
 		}
-		for(int j=0; j<str[3][0].length()-1; j++) {
-			char[] zero = str[3][0].toCharArray();
-			if(zero[j] == '0') {
-				str[3][0] = str[3][0].substring(j+1);
+		int k=0;
+		char[] zero = str[3][0].toCharArray();
+		while(true) {
+			if(zero[k] == '0') {
+				str[3][0] = str[3][0].substring(1);
 			}
+			if(zero[k] != '0' || k==le1I-2) {
+				break;
+			}
+			k++;
 		}
 		if(p.equals("-")) {
 			str[3][0] = p + str[3][0];
