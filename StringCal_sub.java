@@ -74,7 +74,7 @@ public class StringCal_sub {
 			str[0][1] = "";
 			str[2][1] = "";
 		}
-		// 자릿수맞춤
+		// �옄由우닔留욎땄
 		char[] intnum1 = str[0][0].toCharArray();
 		char[] intnum2 = str[2][0].toCharArray();
 		char[] fnum1 = str[0][1].toCharArray();
@@ -84,12 +84,15 @@ public class StringCal_sub {
 		String mininum = str[2][0];
 		String minfnum = str[2][1];
 		String p = "";
-		while (true) {
+		boolean big = true;
+
+		while (big) {
 			if (intnum1[i] > intnum2[i]) {
 				maxinum = str[0][0];
 				maxfnum = str[0][1];
 				mininum = str[2][0];
 				minfnum = str[2][1];
+				big = false;
 				break;
 			} else if (intnum1[i] < intnum2[i]) {
 				maxinum = str[2][0];
@@ -97,6 +100,7 @@ public class StringCal_sub {
 				mininum = str[0][0];
 				minfnum = str[0][1];
 				p = "-";
+				big = false;
 				break;
 			} else if (i == str[0][0].length() - 1) {
 				break;
@@ -104,24 +108,26 @@ public class StringCal_sub {
 			i++;
 		}
 		i = 0;
-		while (true) {
-			if (fnum1[i] > fnum2[i]) {
-				maxinum = str[0][0];
-				maxfnum = str[0][1];
-				mininum = str[2][0];
-				minfnum = str[2][1];
-				break;
-			} else if (fnum1[i] < fnum2[i]) {
-				maxinum = str[2][0];
-				maxfnum = str[2][1];
-				mininum = str[0][0];
-				minfnum = str[0][1];
-				p = "-";
-				break;
-			} else if (i == str[0][1].length() - 1) {
-				break;
+		if (big) {
+			while (true) {
+				if (fnum1[i] > fnum2[i]) {
+					maxinum = str[0][0];
+					maxfnum = str[0][1];
+					mininum = str[2][0];
+					minfnum = str[2][1];
+					break;
+				} else if (fnum1[i] < fnum2[i]) {
+					maxinum = str[2][0];
+					maxfnum = str[2][1];
+					mininum = str[0][0];
+					minfnum = str[0][1];
+					p = "-";
+					break;
+				} else if (i == str[0][1].length() - 1) {
+					break;
+				}
+				i++;
 			}
-			i++;
 		}
 		i = 0;
 		int s = 0;
@@ -177,11 +183,11 @@ public class StringCal_sub {
 		k = le1F - 1;
 		char[] zerof = str[3][1].toCharArray();
 		while (true) {
-			if (zerof[k] != '0' || k == 1) {
+			if (zerof[k] != '0' || k == 0) {
 				break;
 			}
 			if (zerof[k] == '0') {
-				str[3][1] = str[3][1].substring(0, k - 1);
+				str[3][1] = str[3][1].substring(0, k);
 			}
 			k--;
 		}
