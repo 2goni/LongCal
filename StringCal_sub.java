@@ -1,5 +1,3 @@
-package test;
-
 import java.util.StringTokenizer;
 
 public class StringCal_sub {
@@ -77,16 +75,42 @@ public class StringCal_sub {
 			str[2][1] = "";
 		}
 		//자릿수맞춤
+		char[] intnum1 = str[0][0].toCharArray();
+		char[] intnum2 = str[2][0].toCharArray();
+		String maxinum = "";
+		String maxfnum = "";
+		String mininum = "";
+		String minfnum = "";
+		String p = "";
+		while(true) {
+			if(intnum1[i]>intnum2[i]) {
+				maxinum = str[0][0];
+				maxfnum = str[0][1];
+				mininum = str[2][0];
+				minfnum = str[2][1];
+				break;
+			}else if(intnum1[i]<intnum2[i]) {
+				maxinum = str[2][0];
+				maxfnum = str[2][1];
+				mininum = str[0][0];
+				minfnum = str[0][1];
+				p = "-";
+				break;
+			}
+			i++;
+		}
+			
 		int s = 0;
+
 		if(str[1][0].equals("sub") && (args[0].contains(".") || args[2].contains("."))) {
 			str[3][1] = "";
 			int l = le1F-1;
-			char[] floatnum1 = Integer.toString(Math.max(Integer.parseInt(str[0][1]),Integer.parseInt(str[2][1]))).toCharArray();
-			char[] floatnum2 = Integer.toString(Math.min(Integer.parseInt(str[0][1]),Integer.parseInt(str[2][1]))).toCharArray();
+			char[] maxfnumc = maxfnum.toCharArray();
+			char[] minfnumc = minfnum.toCharArray();
 			for(int j=0; j<le1F; j++) {
-				m = Integer.toString(Character.getNumericValue(floatnum1[l]) - Character.getNumericValue(floatnum2[l])+s);
+				m = Integer.toString(Character.getNumericValue(maxfnumc[l]) - Character.getNumericValue(minfnumc[l])+s);
 				if(m.length() > 1) {
-					str[3][1] = m.charAt(0) + str[3][1];
+					str[3][1] = Integer.toString(Character.getNumericValue(maxfnumc[l]) - Character.getNumericValue(minfnumc[l]) + 10) + str[3][1];
 					l--;
 					s = -1;
 				}else {
@@ -99,12 +123,12 @@ public class StringCal_sub {
 		if(str[1][0].equals("sub")){
 			str[3][0] = "";
 			int l = le1I-1;
-			char[] intnum1 = Integer.toString(Math.max(Integer.parseInt(str[0][0]),Integer.parseInt(str[2][0]))).toCharArray();
-			char[] intnum2 = Integer.toString(Math.min(Integer.parseInt(str[0][0]),Integer.parseInt(str[2][0]))).toCharArray();
+			char[] maxinumc = maxinum.toCharArray();
+			char[] mininumc = mininum.toCharArray();
 			for(int j=0; j<le1I; j++) {
-				m = Integer.toString(Character.getNumericValue(intnum1[l]) - Character.getNumericValue(intnum2[l])+s);
+				m = Integer.toString(Character.getNumericValue(maxinumc[l]) - Character.getNumericValue(mininumc[l])+s);
 				if(m.length() > 1) {
-					str[3][0] = m.charAt(0) + str[3][0];
+					str[3][0] = Integer.toString(Character.getNumericValue(maxinumc[l]) - Character.getNumericValue(mininumc[l]) + 10) + str[3][0];
 					l--;
 					s = -1;
 				}else {
@@ -113,38 +137,35 @@ public class StringCal_sub {
 					s = 0;
 				}
 			}
-			int j=0;
-			while(true) {
-				if(j==le1I || intnum1[j] > intnum2[j]) {
-					break;
-				}else if(intnum1[j] < intnum2[j]){
-					str[3][0] = "-" + str[3][0];
-					break;
-				}
-				j++;
+		}
+		for(int j=0; j<str[3][0].length()-1; j++) {
+			char[] zero = str[3][0].toCharArray();
+			if(zero[j] == '0') {
+				str[3][0] = str[3][0].substring(j+1);
 			}
 		}
-	
+		if(p.equals("-")) {
+			str[3][0] = p + str[3][0];
+		}
 		if(str[3][1] == null) {
 			str[3][1] = "";
 		}
 		if(str[1][1] == null) {
 			str[1][1] = "";
 		}
-		int dash = Math.max(args[0].length(), args[2].length())+3; 
+		int dash = Math.max(args[0].length(), args[2].length())*2; 
 		System.out.println("  " + str[0][0] + str[1][1] + str[0][1]);
 		System.out.println("- " + str[2][0] + str[1][1] + str[2][1]);
 		for(int j=0; j<dash; j++) {
 			System.out.print("-");
 		}
 		System.out.println();
-		if(str[0].length < str[1].length) {
+		if(p.equals("-")) {
 			System.out.print(" ");
 		}else {
-			System.out.print("  ");
+			System.out.print("   ");
 		}
 		System.out.println(str[3][0]+str[1][1]+str[3][1]);
 	}
 	
-	// s -1
 }
