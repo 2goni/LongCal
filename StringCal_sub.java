@@ -1,3 +1,5 @@
+package test;
+
 import java.util.StringTokenizer;
 
 public class StringCal_sub {
@@ -141,11 +143,11 @@ public class StringCal_sub {
 		int k=0;
 		char[] zero = str[3][0].toCharArray();
 		while(true) {
+			if(zero[k] != '0' || k==le1I-1) {
+				break;
+			}
 			if(zero[k] == '0') {
 				str[3][0] = str[3][0].substring(1);
-			}
-			if(zero[k] != '0' || k==le1I-2) {
-				break;
 			}
 			k++;
 		}
@@ -158,7 +160,7 @@ public class StringCal_sub {
 		if(str[1][1] == null) {
 			str[1][1] = "";
 		}
-		int dash = Math.max(args[0].length(), args[2].length())*2; 
+		int dash = Math.max(args[0].length(), args[2].length())*2+1; 
 		System.out.println("  " + str[0][0] + str[1][1] + str[0][1]);
 		System.out.println("- " + str[2][0] + str[1][1] + str[2][1]);
 		for(int j=0; j<dash; j++) {
