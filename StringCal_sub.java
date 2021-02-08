@@ -79,6 +79,8 @@ public class StringCal_sub {
 		//자릿수맞춤
 		char[] intnum1 = str[0][0].toCharArray();
 		char[] intnum2 = str[2][0].toCharArray();
+		char[] fnum1 = str[0][1].toCharArray();
+		char[] fnum2 = str[2][1].toCharArray();
 		String maxinum = "";
 		String maxfnum = "";
 		String mininum = "";
@@ -98,10 +100,32 @@ public class StringCal_sub {
 				minfnum = str[0][1];
 				p = "-";
 				break;
+			}else if(i == str[0][0].length()-1){
+				break;
 			}
 			i++;
 		}
-			
+		i=0;
+		while(true) {
+			if(fnum1[i]>fnum2[i]) {
+				maxinum = str[0][0];
+				maxfnum = str[0][1];
+				mininum = str[2][0];
+				minfnum = str[2][1];
+				break;
+			}else if(fnum1[i]<fnum2[i]) {
+				maxinum = str[2][0];
+				maxfnum = str[2][1];
+				mininum = str[0][0];
+				minfnum = str[0][1];
+				p = "-";
+				break;
+			}else if(i == str[0][0].length()-1){
+				break;
+			}
+			i++;
+		}
+		i=0;
 		int s = 0;
 
 		if(str[1][0].equals("sub") && (args[0].contains(".") || args[2].contains("."))) {
