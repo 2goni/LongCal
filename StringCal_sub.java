@@ -74,7 +74,6 @@ public class StringCal_sub {
 			str[0][1] = "";
 			str[2][1] = "";
 		}
-		// �옄由우닔留욎땄
 		char[] intnum1 = str[0][0].toCharArray();
 		char[] intnum2 = str[2][0].toCharArray();
 		char[] fnum1 = str[0][1].toCharArray();
@@ -120,7 +119,7 @@ public class StringCal_sub {
 					maxinum = str[2][0];
 					maxfnum = str[2][1];
 					mininum = str[0][0];
-					minfnum = str[0][1];
+					minfnum = str[0][1];q
 					p = "-";
 					break;
 				} else if (i == str[0][1].length() - 1) {
