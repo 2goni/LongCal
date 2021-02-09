@@ -1,3 +1,5 @@
+package test;
+
 import java.util.StringTokenizer;
 
 public class StringCal_sub {
@@ -107,8 +109,9 @@ public class StringCal_sub {
 			i++;
 		}
 		i = 0;
-		if (big) {
-			while (true) {
+		if (args[0].contains(".") || args[2].contains(".")) {
+
+			while (big) {
 				if (fnum1[i] > fnum2[i]) {
 					maxinum = str[0][0];
 					maxfnum = str[0][1];
@@ -119,7 +122,7 @@ public class StringCal_sub {
 					maxinum = str[2][0];
 					maxfnum = str[2][1];
 					mininum = str[0][0];
-					minfnum = str[0][1];q
+					minfnum = str[0][1];
 					p = "-";
 					break;
 				} else if (i == str[0][1].length() - 1) {
@@ -180,15 +183,19 @@ public class StringCal_sub {
 			k++;
 		}
 		k = le1F - 1;
-		char[] zerof = str[3][1].toCharArray();
-		while (true) {
-			if (zerof[k] != '0' || k == 0) {
-				break;
+
+		if (args[0].contains(".") || args[2].contains(".")) {
+
+			char[] zerof = str[3][1].toCharArray();
+			while (true) {
+				if (zerof[k] != '0' || k == 0) {
+					break;
+				}
+				if (zerof[k] == '0') {
+					str[3][1] = str[3][1].substring(0, k);
+				}
+				k--;
 			}
-			if (zerof[k] == '0') {
-				str[3][1] = str[3][1].substring(0, k);
-			}
-			k--;
 		}
 		k = 0;
 
@@ -211,7 +218,7 @@ public class StringCal_sub {
 		if (p.equals("-")) {
 			System.out.print(" ");
 		} else {
-			System.out.print("   ");
+			System.out.print("  ");
 		}
 		System.out.println(str[3][0] + str[1][1] + str[3][1]);
 	}
