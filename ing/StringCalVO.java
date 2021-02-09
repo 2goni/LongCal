@@ -5,10 +5,10 @@ public class StringCalVO {
 	private String inum2;
 	private String fnum1;
 	private String fnum2;
-	private String result;
 	private boolean hasdot1;
 	private boolean hasdot2;
-
+	private boolean minus;
+	private String result = "";
 	
 	StringCalVO(String[] args){
 		this.setHasdot1(args[0]);
@@ -26,6 +26,7 @@ public class StringCalVO {
 			inum1 = args;
 		}
 	}
+	// 숫자1 정수 담기
 	public String getInum2() {
 		return inum2;
 	}
@@ -36,16 +37,18 @@ public class StringCalVO {
 			inum2 = args;
 		}
 	}
+	// 숫자2 정수 담기
 	public String getFnum1() {
 		return fnum1;
 	}
 	public void setFnum1(String args) {
 		if(hasdot1) {
-			fnum1 = args.substring(args.indexOf(".") + 1 , args.length());
+			fnum1 = args.substring(args.indexOf(".") +1 , args.length());
 		}else{
 			fnum1 = "";
 		}
 	}
+	// 숫자1 소수 담기
 	public String getFnum2() {
 		return fnum2;
 	}
@@ -56,20 +59,27 @@ public class StringCalVO {
 			fnum2 = "";
 		}
 	}
+	// 숫자2 소수 담기
 	public String getResult() {
 		return result;
 	}
-	public void setResult(String result) {
-		this.result = result;
+	public void setResult(char ch) {
+		result = ch + result;
 	}
-
+	// 계산값 담기
+	public void delResultI(int i) {
+		result = result.substring(i);
+	}
+	public void delResultF(int i) {
+		result = result.substring(0, i);
+	}
+	// 정수 소수 앞뒤 0지우기
 	public boolean getHasdot1() {
 		return hasdot1;
 	}
 	public boolean getHasdot2() {
 		return hasdot2;
 	}
-
 	public void setHasdot1(String args) {
 		if(args.contains(".")) {
 			hasdot1 = true;
@@ -78,6 +88,7 @@ public class StringCalVO {
 		}else {
 			hasdot1 = false;
 			this.setInum1(args);
+			this.setFnum1(args);
 		}
 		
 	}
@@ -90,30 +101,45 @@ public class StringCalVO {
 		}else {
 			hasdot2 = false;
 			this.setInum2(args);
+			this.setFnum2(args);
 		}
 		
 	}
-	
+	// 숫자1 숫자2 소수확인
+	public void setminus(boolean b) {
+		minus = b;
+	}
+	public boolean getminus() {
+		return minus;
+	}
+	// 결과값 음수인지 확인
 	public void zeroset() {
-		if(inum1.length() > inum2.length()) {
-			for (int i = 0; i < inum1.length() - inum2.length(); i++) {
+		int linum1 = inum1.length();
+		int linum2 = inum2.length();
+		int lfnum1 = fnum1.length();
+		int lfnum2 = fnum2.length();
+		if(linum1 > linum2) {
+			for (int i = 0; i < linum1 - linum2; i++) {
 			inum2 = "0" + inum2;
 			}
-		} else if (inum2.length() > inum1.length()) {
-			for (int i = 0; i < inum2.length() - inum1.length(); i++) {
+		} else if (linum2 > linum1) {
+			for (int i = 0; i < linum2 - linum1; i++) {
 			inum1 = "0" + inum1;
 			}
 		}
 		if(hasdot1 == true || hasdot2 == true) {
-			if(fnum1.length() > fnum2.length()) {
-				for (int i = 0; i < fnum1.length() - fnum2.length(); i++) {
+			if(lfnum1 > lfnum2) {
+				for (int i = 0; i < lfnum1 - lfnum2; i++) {
 				fnum2 = fnum2 + "0";
 				}
-			} else if (fnum2.length() > fnum1.length()) {
-				for (int i = 0; i < fnum2.length() - fnum1.length(); i++) {
+			} else if (lfnum2 > lfnum1) {
+				for (int i = 0; i < lfnum2 - lfnum1; i++) {
 				fnum1 = fnum1 + "0";
 				}
 			}
+			fnum1 = "." + fnum1;
+			fnum2 = "." + fnum2;
 		}
 	}
+	// 숫자1 숫자2 자릿수 맞추기
 }
