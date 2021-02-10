@@ -12,7 +12,7 @@ public class StringCal {
 		} else if (args[1].equals("sub")) {
 			sc = new StringCal_sub();
 			op = '-';
-		}
+		} 
 
 		sc.docal(vo);
 		zerodel();
